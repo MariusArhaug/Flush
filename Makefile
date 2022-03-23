@@ -1,6 +1,10 @@
 UNAME = $(shell uname -s)
 CC = gcc
 
+LEX = flex
+YACC = bison
+YFLAGS +=--defines=src/y.tab.h -o y.tab.c
+
 CFLAGS = -std=c11 -g -Wall
 CFLAGS += -Isrc/
 CFLAGS += -D_POSIX_C_SOURCE=200809L
@@ -14,13 +18,14 @@ OUT=flush
 
 SRC = $(wildcard src/*.c) $(wildcard src/**/*.c) $(wildcard src/**/**/*.c)
 OBJ = $(SRC:.c=.o)
+OBJ += src/parser.o src/scanner.o 
 
 BIN = bin
 
 .POSIX: all clean
 .PHONY: all clean
 
-all: dirs compile
+all: dirs src/y.tab.h src/scanner.c compile
 
 dirs: 
 	mkdir -p ./$(BIN)
@@ -41,5 +46,8 @@ compile: $(OBJ)
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS)
 
+src/y.tab.h: src/parser.c
+src/scanner.c: src/y.tab.h src/scanner.l
+
 clean:
-	rm -rf $(BIN) $(OBJ)
+	rm -rf $(BIN) $(OBJ) src/parser.c src/scanner.c src/*tab.*
