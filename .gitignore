@@ -54,3 +54,5 @@ dkms.conf
 /bin/*
 
 /lib/*
+/src/parser/parser.c
+/src/parser/scanner.c
