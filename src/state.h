@@ -1,19 +1,29 @@
 #ifndef STATE_H
 #define STATE_H
 
-// Token definitions and other things from bison.
-#include "y.tab.h"
+#include <stdbool.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
-/* Generated from bison grammer, call flex specification */
-int yyerror(const char* error);
+struct state {
+  struct job* jobs;  
+  bool prev_success;
+  char prev_directory[2048];
+};
 
-extern int yylineno;
-extern int yylex( void );
-extern char yytext[];
-extern int yylex_destroy( void );
+struct job {
+  pid_t pid;
+};
 
-typedef enum {
-  COMMAND
-} input_t;
+extern struct state state; //global state
+
+void fork_and_execute(const char* command, FILE* in, FILE* out, const char* args);
+
+void change_dir(const char* path);
+void show_jobs(void);
 
 #endif

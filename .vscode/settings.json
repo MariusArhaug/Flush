@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.sql": "sql",
+    "libgit2.h": "c",
+    "common.h": "c"
+  },
+  "yash.YYTYPE": "char *"
+}
