@@ -488,8 +488,8 @@ int yy_flex_debug = 0;
 
 char yytext[YYLMAX];
 char *yytext_ptr;
-#line 1 "src/scanner.l"
-#line 2 "src/scanner.l"
+#line 1 "src/parser/scanner.l"
+#line 2 "src/parser/scanner.l"
 #include <common.h>  
 #line 495 "<stdout>"
 #define YY_NO_INPUT 1
@@ -711,7 +711,7 @@ YY_DECL
 		}
 
 	{
-#line 18 "src/scanner.l"
+#line 18 "src/parser/scanner.l"
 
 
 #line 718 "<stdout>"
@@ -784,23 +784,23 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 20 "src/scanner.l"
+#line 20 "src/parser/scanner.l"
 { /* eliminate whitespace */}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 21 "src/scanner.l"
+#line 21 "src/parser/scanner.l"
 { return NEWLINE;   }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 22 "src/scanner.l"
+#line 22 "src/parser/scanner.l"
 { return CD;        }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 23 "src/scanner.l"
+#line 23 "src/parser/scanner.l"
 { return JOBS;      }
 	YY_BREAK
 case 5:
@@ -810,27 +810,27 @@ YY_LINENO_REWIND_TO(yy_cp - 1);
 (yy_c_buf_p) = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 24 "src/scanner.l"
+#line 24 "src/parser/scanner.l"
 { return PATH;      }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 25 "src/scanner.l"
+#line 25 "src/parser/scanner.l"
 { return COMMAND;   }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 26 "src/scanner.l"
+#line 26 "src/parser/scanner.l"
 { return PARAM;     }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 27 "src/scanner.l"
+#line 27 "src/parser/scanner.l"
 { return yytext[0]; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "src/scanner.l"
+#line 28 "src/parser/scanner.l"
 ECHO;
 	YY_BREAK
 #line 837 "<stdout>"
@@ -1811,5 +1811,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 28 "src/scanner.l"
+#line 28 "src/parser/scanner.l"
 

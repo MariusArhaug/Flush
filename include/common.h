@@ -9,7 +9,7 @@
 #include <stdarg.h>
 
 // Token definitions and other things from bison.
-#include "y.tab.h"
+#include "parser/y.tab.h"
 
 /* Generated from bison grammer, call flex specification */
 int yyerror(const char* error);

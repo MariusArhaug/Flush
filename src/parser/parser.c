@@ -66,7 +66,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "src/parser.y"
+#line 1 "src/parser/parser.y"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -107,8 +107,8 @@
 
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
-#ifndef YY_YY_SRC_Y_TAB_H_INCLUDED
-# define YY_YY_SRC_Y_TAB_H_INCLUDED
+#ifndef YY_YY_SRC_PARSER_Y_TAB_H_INCLUDED
+# define YY_YY_SRC_PARSER_Y_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -143,7 +143,7 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_SRC_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_SRC_PARSER_Y_TAB_H_INCLUDED  */
 
 
 
@@ -1311,73 +1311,73 @@ yyreduce:
   switch (yyn)
     {
   case 2:
-#line 14 "src/parser.y"
-                         { return; }
+#line 14 "src/parser/parser.y"
+                         { return NULL; }
 #line 1317 "y.tab.c"
     break;
 
   case 9:
-#line 34 "src/parser.y"
+#line 34 "src/parser/parser.y"
                                  { fork_and_execute(yyvsp[0], stdin, stdout, NULL); }
 #line 1323 "y.tab.c"
     break;
 
   case 10:
-#line 35 "src/parser.y"
+#line 35 "src/parser/parser.y"
                                  { /* backgoround process */ }
 #line 1329 "y.tab.c"
     break;
 
   case 11:
-#line 36 "src/parser.y"
+#line 36 "src/parser/parser.y"
                                  { /* io redirection */}
 #line 1335 "y.tab.c"
     break;
 
   case 12:
-#line 37 "src/parser.y"
+#line 37 "src/parser/parser.y"
                                  {}
 #line 1341 "y.tab.c"
     break;
 
   case 13:
-#line 41 "src/parser.y"
+#line 41 "src/parser/parser.y"
             { yyval = strdup(yytext); }
 #line 1347 "y.tab.c"
     break;
 
   case 15:
-#line 49 "src/parser.y"
+#line 49 "src/parser/parser.y"
                      { change_dir(yyvsp[0]); }
 #line 1353 "y.tab.c"
     break;
 
   case 17:
-#line 54 "src/parser.y"
+#line 54 "src/parser/parser.y"
             { yyval = strdup(getenv("HOME")); }
 #line 1359 "y.tab.c"
     break;
 
   case 18:
-#line 58 "src/parser.y"
+#line 58 "src/parser/parser.y"
                { yyval = strdup(getenv("HOME")); }
 #line 1365 "y.tab.c"
     break;
 
   case 19:
-#line 59 "src/parser.y"
+#line 59 "src/parser/parser.y"
                { yyval = strdup(state.prev_directory); }
 #line 1371 "y.tab.c"
     break;
 
   case 20:
-#line 60 "src/parser.y"
+#line 60 "src/parser/parser.y"
                { yyval = strdup(yytext); }
 #line 1377 "y.tab.c"
     break;
 
   case 21:
-#line 65 "src/parser.y"
+#line 65 "src/parser/parser.y"
        { show_jobs(); }
 #line 1383 "y.tab.c"
     break;
@@ -1615,7 +1615,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 68 "src/parser.y"
+#line 68 "src/parser/parser.y"
 
 
 int yyerror( const char* error ) {

@@ -11,7 +11,7 @@
 %%
 
 input:
-    command_list NEWLINE { return; }
+    command_list NEWLINE { return NULL; }
   ;
 
 command_list:
