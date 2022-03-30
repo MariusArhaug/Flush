@@ -7,7 +7,7 @@ YFLAGS +=--defines=src/parser/y.tab.h -o y.tab.c
 
 CFLAGS = -std=c11 -g -Wall
 CFLAGS += -Isrc/ -Iinclude/
-CFLAGS += -D_POSIX_C_SOURCE=200809L -DYYSTYPE="char *"
+CFLAGS += -D_POSIX_C_SOURCE=200809L -DYYSTYPE="void *"
 CFLAGS += -Ilib/libgit2/include
 # LDFLAGS = -Llib/libgit2 -llibgit2 lib/libgit2/libgit2.so
 
@@ -34,7 +34,7 @@ dirs:
 libs:
 	cd lib/libgit2 && cmake . && cmake --build .
 
-run: clean all
+run: all
 	$(BIN)/$(OUT)
 
 valgrind: all

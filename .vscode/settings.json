@@ -2,7 +2,21 @@
   "files.associations": {
     "*.sql": "sql",
     "libgit2.h": "c",
-    "common.h": "c"
+    "common.h": "c",
+    "locale.h": "c"
   },
-  "yash.YYTYPE": "char *"
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.o": true
+  },
+  "editor.tabSize": 4,
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "yash.YYTYPE": "char *",
+  "editor.semanticHighlighting.enabled": true
 }
