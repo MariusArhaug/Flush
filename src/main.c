@@ -114,8 +114,9 @@ void execute_c(void) {
 
 	for (int i = 0; i < n_cmds; i++) {
 		wait(&status); 
-		printf("EXIT status [/bin/%s] = %d\n", state.processes->array[(i*CMD_SIZE)+0], status);
-	}	
+		printf("EXIT status [/bin/%s] = %d\n", (char*) state.processes->array[(i*CMD_SIZE)+0], status);
+	}
+	usleep(500);	// sleep so that the next prompt can come out
 }
 
 void exec(const char* command, char* args, char* input, char* output) {
@@ -125,7 +126,7 @@ void exec(const char* command, char* args, char* input, char* output) {
 	if (access(bin, X_OK) != 0) {
 		fprintf(stderr, "flush: command not found: \"%s\"\n", bin);
   		state.prev_success = false;
-		return;
+		exit(EXIT_FAILURE);
 	}
 
 	signal(SIGINT, SIG_DFL); // allow signal for current process
