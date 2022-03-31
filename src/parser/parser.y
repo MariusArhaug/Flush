@@ -29,27 +29,29 @@ static void push(void**);
 
 %%
 
-input:
-    command_list NEWLINE { execute_c(); return 0; } 
-  | %empty  { exit_shell(); }
-  ;
 
-// TODO rewrite grammer to not support internal commands for pipeing and also not support & along with pipeing.
-command_list:
-    command_statement                   { push($1); }  
-  | command_list '|' command_statement  { push($3); } 
-  ;
+// TODO rewrite grammar to not support & along with pipeing.
+
+input:
+		command_statement NEWLINE 	{ return 0;			}
+	|	%empty					  	{ exit_shell(); 	}
+	;
 
 command_statement: 
-    internal_command
-  | external_command
-  ;
+		internal_command
+	|	external_command_list	 	{ execute_c(); }
+	;
+
 
 internal_command:
     cd
   | jobs
   | exit
   ;
+
+external_command_list:
+	external_command                  			{ push($1); }  
+  | external_command_list '|' external_command  { push($3); } 
 
 external_command:
     command param bg                      { $$ = ARR($1, $2, NULL, NULL, $3); }
