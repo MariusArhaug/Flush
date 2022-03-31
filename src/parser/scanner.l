@@ -9,11 +9,10 @@
 
 WHITESPACE [\ \t\v\r]+
 NEWLINE [\n]
-COMMAND [a-zA-Z]([a-zA-Z0-9_])*
-PARAM [$!?"a-zA-Z0-9\/\.]+
-PATH ^\/([^\/]+)$
+PARAM [~\-\"a-zA-Z0-9\/\.\']+
 CD cd
 JOBS jobs
+EXIT exit
 
 %%
 
@@ -21,8 +20,7 @@ JOBS jobs
 {NEWLINE}               { return NEWLINE;   }
 {CD}                    { return CD;        }
 {JOBS}                  { return JOBS;      }
-{PATH}                  { return PATH;      }
-{COMMAND}               { return COMMAND;   }
+{EXIT}                  { return EXIT;      }
 {PARAM}                 { return PARAM;     }
 .                       { return yytext[0]; }
 %%

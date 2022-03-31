@@ -49,12 +49,11 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    COMMAND = 258,
-    CD = 259,
-    JOBS = 260,
-    PARAM = 261,
-    PATH = 262,
-    NEWLINE = 263
+    CD = 258,
+    JOBS = 259,
+    PARAM = 260,
+    NEWLINE = 261,
+    EXIT = 262
   };
 #endif
 
