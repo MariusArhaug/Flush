@@ -33,8 +33,8 @@ static void push(void**);
 // TODO rewrite grammar to not support & along with pipeing.
 
 input:
-		command_statement NEWLINE 	{ return 0;			  }
-	|	%empty					  	        { exit_shell(); 	}
+		command_statement NEWLINE 	 { return 0; }
+	|	%empty					  	 { exit_shell(); }
 	;
 
 command_statement: 
@@ -94,8 +94,8 @@ exit:
 %%
 
 int yyerror( const char* error ) {
-  fprintf(stderr, "flush: parse error near \"%s\"\n", yytext);
-  return 1;
+  	fprintf(stderr, "flush: parse error near \"%s\"\n", yytext);
+  	return 1;
 }
 
 char* handle_path() {
@@ -117,19 +117,19 @@ void exit_shell() {
 
 void push(void** arr) {
     if (dynamic_arr->count == dynamic_arr->capacity) {
-      dynamic_arr->capacity *= 2;
+      	dynamic_arr->capacity *= 2;
 
-      dynamic_arr->array = realloc(
-        dynamic_arr->array, 
-        sizeof(char*) * dynamic_arr->capacity 
-      );
+      	dynamic_arr->array = realloc(
+        	dynamic_arr->array, 
+        	sizeof(char*) * dynamic_arr->capacity 
+      	);
     }
 
-	for (int i = 0; i < CMD_SIZE-1; i++) {
-		dynamic_arr->array[dynamic_arr->count+i] = strdupn(arr[i]); // malloc and copy 
-		free(arr[i]);
-	}
-  // add flag to array
-	dynamic_arr->array[dynamic_arr->count+CMD_SIZE-1] = arr[CMD_SIZE-1]; 
- 	dynamic_arr->count += CMD_SIZE;
+    for (int i = 0; i < CMD_SIZE-1; i++) {
+      	dynamic_arr->array[dynamic_arr->count+i] = strdupn(arr[i]); // malloc and copy 
+      	free(arr[i]);
+    }
+    // add flag to array
+    dynamic_arr->array[dynamic_arr->count+CMD_SIZE-1] = arr[CMD_SIZE-1]; 
+    dynamic_arr->count += CMD_SIZE;
 }
