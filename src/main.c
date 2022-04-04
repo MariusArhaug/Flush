@@ -166,11 +166,11 @@ void execute(const char* command, char* args, char* input, char* output, flag_t 
 	} 
 
 	if (flag == BG) {
-		job_t* job = job_init(pid, command);
-		if (state.job_count == 0) 
-			state.head = job;
-		else 
-			insert_after_job(state.head, job);
+		// job_t* job = job_init(pid, command, args, state.job_count);
+		// if (state.job_count == 0) 
+		// 	state.head = job;
+		// else 
+		// 	insert_after_job(state.head, job);
 		
 		state.job_count++;
 		printf("[%ld] %d %s %s\n", state.job_count, pid, command, args == NULL ? "" : args);
@@ -195,7 +195,7 @@ void init() {
 		exit(EXIT_SUCCESS);
 	}
 
-	signal(SIGINT, SIG_IGN); // disable ctrl + c from main shell only child proesses
+	//signal(SIGINT, SIG_IGN); // disable ctrl + c from main shell only child proesses
 	state.prev_success = true;
 	getcwd(state.prev_directory, sizeof(state.prev_directory));
 	state.job_count = 0;
@@ -221,7 +221,7 @@ void cleanup( void ) {
 
 	free(state.processes->array);
 	processes_init();
-	//cleanup_jobs(state.head);
+	//cleanup_jobs(&state.head, &state.job_count);
 }
 
 void prompt( void ) {
@@ -229,12 +229,12 @@ void prompt( void ) {
 	PRINT_CWD();
 
 	yyparse();
-	cleanup();
 }
 
 int main(int argc, char* argv[]) {
 	init();
 	while(true) {
 		prompt();
+		cleanup();
 	}
 }

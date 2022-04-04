@@ -33,8 +33,8 @@ static void push(void**);
 // TODO rewrite grammar to not support & along with pipeing.
 
 input:
-		command_statement NEWLINE 	{ return 0;			}
-	|	%empty					  	{ exit_shell(); 	}
+		command_statement NEWLINE 	{ return 0;			  }
+	|	%empty					  	        { exit_shell(); 	}
 	;
 
 command_statement: 
@@ -129,6 +129,7 @@ void push(void** arr) {
 		dynamic_arr->array[dynamic_arr->count+i] = strdupn(arr[i]); // malloc and copy 
 		free(arr[i]);
 	}
-	dynamic_arr->array[dynamic_arr->count+CMD_SIZE-1] = arr[CMD_SIZE-1];
+  // add flag to array
+	dynamic_arr->array[dynamic_arr->count+CMD_SIZE-1] = arr[CMD_SIZE-1]; 
  	dynamic_arr->count += CMD_SIZE;
 }
