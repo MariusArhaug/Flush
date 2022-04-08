@@ -34,7 +34,7 @@
 
 // execute and wait or run in backgroud depending in on flag
 static void execute(const char* command, char* args, char* input, char* output, flag_t flag);
-static void exec(const char* command, char* args, char* input, char*output);
+static int  exec(const char* command, char* args, char* input, char*output);
 static void cleanup( void );
 
 struct state state; 
@@ -119,7 +119,7 @@ void execute_c(void) {
 	usleep(500);	// sleep so that the next prompt can come out
 }
 
-void exec(const char* command, char* args, char* input, char* output) {
+int exec(const char* command, char* args, char* input, char* output) {
 	char bin[1024] = "/bin/";
 	strcat(bin, command);
 
@@ -146,16 +146,16 @@ void exec(const char* command, char* args, char* input, char* output) {
 		args,
 		NULL
 	};
-	if (execv(execv_args[0], execv_args) == -1)
-			exit(errno);
-	exit(EXIT_SUCCESS);
+	return execv(execv_args[0], execv_args);
 }
 
 void execute(const char* command, char* args, char* input, char* output, flag_t flag) {
 	pid_t pid = fork();
 	
 	if (pid == 0) {
-		exec(command, args, input, output);
+		if (exec(command, args, input, output) == -1)
+			exit(errno);
+		exit(EXIT_SUCCESS);
 	}
 
 	if (flag == WT) {
