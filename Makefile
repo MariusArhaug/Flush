@@ -9,8 +9,6 @@ CFLAGS = -std=c11 -g -Wall
 CFLAGS += -Isrc/ -Iinclude/
 CFLAGS += -D_XOPEN_SOURCE=600 -D_POSIX_C_SOURCE=200112L
 CFLAGS += -DYYSTYPE="void *"
-CFLAGS += -Ilib/libgit2/include
-# LDFLAGS = -Llib/libgit2 -llibgit2 lib/libgit2/libgit2.so
 
 ifeq ($(UNAME), Linux)
 	LDFLAGS += -ldl -lpthread

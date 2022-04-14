@@ -11,7 +11,6 @@
 #include <termio.h>
 #include <fcntl.h>
 
-#include <git2.h>
 #include <common.h>
 
 #include "state.h"
