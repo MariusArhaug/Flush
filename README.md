@@ -131,3 +131,9 @@ The parser will append every command, arguments and io redirections into a strin
 Using the **execute_c(3)** in **main.c** we can create pipes if more than one command was entered in the user input.
 
 There will be a total of n-1 pipes if the user entered n commands. So these pipes needs to be generated and updated so that the next command in the string list will use the previous stdout as its stdin. except for the edge cases of first and last command which dont need their in/out to be changed respectively.
+
+Example
+
+```sh
+/home/user/flush: ls -l | grep root | cat > /tmp/file
+```
