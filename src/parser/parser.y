@@ -33,8 +33,9 @@ static void push(void**);
 // TODO rewrite grammar to not support & along with pipeing.
 
 input:
-		command_statement NEWLINE 	 { return 0; }
-	|	%empty					  	 { exit_shell(); }
+    NEWLINE                      { return 0; }
+	|	command_statement NEWLINE 	 { return 0; }
+	|	%empty					  	         { exit_shell(); }
 	;
 
 command_statement: 

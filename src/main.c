@@ -194,7 +194,7 @@ void init() {
 		exit(EXIT_SUCCESS);
 	}
 
-	//signal(SIGINT, SIG_IGN); // disable ctrl + c from main shell only child proesses
+	signal(SIGINT, SIG_IGN); // disable ctrl + c from main shell only child proesses
 	state.prev_success = true;
 	getcwd(state.prev_directory, sizeof(state.prev_directory));
 	state.job_count = 0;
