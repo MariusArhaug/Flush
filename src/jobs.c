@@ -60,6 +60,29 @@ void job_destroy(job_t* self) {
 	self = NULL;
 }
 
+void delete_job(job_t** head, job_t* del) {
+
+	job_t* temp = *head, *prev;
+
+	if (temp != NULL && temp == del) {
+		(*head)->next = temp->next;
+		free(temp); // destroy
+		return;
+	}
+
+	while (temp != NULL && temp != del) {
+		prev = temp;
+		temp = temp->next;
+	}
+
+	if (temp == NULL)
+		return;
+
+	prev->next = temp->next;
+
+	free(temp);
+}
+
 
 void cleanup_jobs(job_t** head, size_t* counter) {
 	if (*head == NULL || *counter == 0)
@@ -72,13 +95,7 @@ void cleanup_jobs(job_t** head, size_t* counter) {
 			printf("\n[%ld] + %d done %s %s\n", curr->i, curr->pid, curr->command, curr->args);
 			printf("EXIT status [/bin/%s] = %d\n", curr->command, status);
 
-			// if curr != tail then move prev->next to curr->next
-			if (curr->next != NULL) 
-				for (job_t* n = *head; n != curr; n = n->next) 
-					n->next = curr->next;
-				
-				
-			//job_destroy(curr);
+			delete_job(head, curr);
 			(*counter)--;
 		}	
 	}

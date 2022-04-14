@@ -166,11 +166,11 @@ void execute(const char* command, char* args, char* input, char* output, flag_t 
 	} 
 
 	if (flag == BG) {
-		// job_t* job = job_init(pid, command, args, state.job_count);
-		// if (state.job_count == 0) 
-		// 	state.head = job;
-		// else 
-		// 	insert_after_job(state.head, job);
+		job_t* job = job_init(pid, command, args, state.job_count);
+		if (state.job_count == 0) 
+			state.head = job;
+		else 
+			insert_after_job(state.head, job);
 		
 		state.job_count++;
 		printf("[%ld] %d %s %s\n", state.job_count, pid, command, args == NULL ? "" : args);
@@ -207,7 +207,9 @@ void init() {
 }
 
 void show_jobs( void ) {
-	print_jobs(state.head);
+	if (state.job_count != 0) {
+		print_jobs(state.head);
+	}
 }
 
 void cleanup( void ) {
@@ -221,7 +223,7 @@ void cleanup( void ) {
 
 	free(state.processes->array);
 	processes_init();
-	//cleanup_jobs(&state.head, &state.job_count);
+	cleanup_jobs(&state.head, &state.job_count);
 }
 
 void prompt( void ) {
