@@ -11,8 +11,7 @@
 
 #define strdupn(_s) ((_s) == NULL ? NULL : strdup(_s))
 
-#define ARR(...) \
-  (void*[CMD_SIZE]) {__VA_ARGS__}
+#define ARR(...) (void*[CMD_SIZE]) {__VA_ARGS__}
 
 // resolve path from yytext
 static char* handle_path();
